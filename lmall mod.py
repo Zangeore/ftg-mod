@@ -593,3 +593,45 @@ async def _(event):
 
 
         await event.edit("Хьюстон, у нас проблемы! Попробуй позже.")
+
+@borg.on(admin_cmd(pattern="lmlurk(.*)"))
+
+
+
+async def _(event):
+
+
+
+    if event.fwd_from:
+
+
+
+        return
+
+
+
+    input_str = event.pattern_match.group(1)
+
+
+
+    sample_url = "https://da.gd/s?url=https://lurkmore.to/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F%3ASearch&profile=default&search={}".format(input_str.replace(" ","_"))
+
+
+
+    response_api = requests.get(sample_url).text
+
+
+
+    if response_api:
+
+
+
+        await event.edit("Я проверю **Lurkmoar** специально для тебя:\n👉 [{}]({})\n`Удачи в поиске паст, не забудь сказать спасибо! 😉` ".format(input_str,response_api.rstrip()))
+
+
+
+    else:
+
+
+
+        await event.edit("Хьюстон, у нас проблемы! Попробуй позже.")
